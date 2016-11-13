@@ -101,6 +101,8 @@ ExtractMeanStandardDeviation() <- function(){
   dt <- dt[, select, with = FALSE]
 }
 ```
+**Output**
+
 head(dtFeatures)
 ```r
 ##    featureNum       featureName featureCode
@@ -121,3 +123,11 @@ dtFeatures$featureCode
 ## [51] "V349" "V350" "V424" "V425" "V426" "V427" "V428" "V429" "V503" "V504"
 ## [61] "V516" "V517" "V529" "V530" "V542" "V543"
 ```
+5.  Use descriptive activity names
+
+DescriptiveActivity()
+
+DescriptiveActivity <- function(){
+  dtActivityNames <- fread(file.path(pathIn, "activity_labels.txt"))
+  setnames(dtActivityNames, names(dtActivityNames), c("activityNum", "activityName"))
+}
