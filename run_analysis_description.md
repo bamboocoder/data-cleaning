@@ -71,3 +71,19 @@ LoadUnzipAndData <- function(){
 [27] "train/X_train.txt"                           
 [28] "train/y_train.txt"          
 
+## 3. Merge Record
+
+MergeRecords()
+
+```r
+MergeRecords <- function(){
+  dtSubject <- rbind(dtSubjectTrain, dtSubjectTest)
+  setnames(dtSubject, "V1", "subject")
+  dtActivity <- rbind(dtActivityTrain, dtActivityTest)
+  setnames(dtActivity, "V1", "activityNum")
+  dt <- rbind(dtTrain, dtTest)
+  dtSubject <- cbind(dtSubject, dtActivity)
+  dt <- cbind(dtSubject, dt)
+  setkey(dt, subject, activityNum)
+}
+```
