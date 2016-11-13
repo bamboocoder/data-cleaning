@@ -87,3 +87,37 @@ MergeRecords <- function(){
   setkey(dt, subject, activityNum)
 }
 ```
+4. Extract only the mean and standard deviation
+
+ExtractMeanStandardDeviation()
+
+```r
+ExtractMeanStandardDeviation() <- function(){
+  dtFeatures <- fread(file.path(pathIn, "features.txt"))
+  setnames(dtFeatures, names(dtFeatures), c("featureNum", "featureName"))
+  dtFeatures <- dtFeatures[grepl("mean\\(\\)|std\\(\\)", featureName)]
+  dtFeatures$featureCode <- dtFeatures[, paste0("V", featureNum)]
+  select <- c(key(dt), dtFeatures$featureCode)
+  dt <- dt[, select, with = FALSE]
+}
+```
+head(dtFeatures)
+```r
+##    featureNum       featureName featureCode
+## 1:          1 tBodyAcc-mean()-X          V1
+## 2:          2 tBodyAcc-mean()-Y          V2
+## 3:          3 tBodyAcc-mean()-Z          V3
+## 4:          4  tBodyAcc-std()-X          V4
+## 5:          5  tBodyAcc-std()-Y          V5
+## 6:          6  tBodyAcc-std()-Z          V6
+```
+dtFeatures$featureCode
+```r
+##  [1] "V1"   "V2"   "V3"   "V4"   "V5"   "V6"   "V41"  "V42"  "V43"  "V44" 
+## [11] "V45"  "V46"  "V81"  "V82"  "V83"  "V84"  "V85"  "V86"  "V121" "V122"
+## [21] "V123" "V124" "V125" "V126" "V161" "V162" "V163" "V164" "V165" "V166"
+## [31] "V201" "V202" "V214" "V215" "V227" "V228" "V240" "V241" "V253" "V254"
+## [41] "V266" "V267" "V268" "V269" "V270" "V271" "V345" "V346" "V347" "V348"
+## [51] "V349" "V350" "V424" "V425" "V426" "V427" "V428" "V429" "V503" "V504"
+## [61] "V516" "V517" "V529" "V530" "V542" "V543"
+```
