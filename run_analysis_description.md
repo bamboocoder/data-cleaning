@@ -87,7 +87,7 @@ MergeRecords <- function(){
   setkey(dt, subject, activityNum)
 }
 ```
-4. Extract only the mean and standard deviation
+## 4. Extract only the mean and standard deviation
 
 ExtractMeanStandardDeviation()
 
@@ -123,7 +123,7 @@ dtFeatures$featureCode
 ## [51] "V349" "V350" "V424" "V425" "V426" "V427" "V428" "V429" "V503" "V504"
 ## [61] "V516" "V517" "V529" "V530" "V542" "V543"
 ```
-5.  Use descriptive activity names
+## 5.  Use descriptive activity names
 
 DescriptiveActivity()
 
@@ -134,7 +134,7 @@ DescriptiveActivity <- function(){
 }
 ```
 
-6.  Label with descriptive activity names
+##  6.  Label with descriptive activity names
 
 LabelDescriptiveActivityNames()
 
@@ -177,4 +177,14 @@ LabelDescriptiveActivityNames() <- function(){
 grepthis <- function(regex) {
   grepl(regex, dt$feature)
 }
+```
+## 7. Create a tidy data set
+
+CreateTidyDataSet()
+
+```r
+setkey(dt, subject, activity, featDomain, featAcceleration, featInstrument, 
+    featJerk, featMagnitude, featVariable, featAxis)
+dtTidy <- dt[, list(count = .N, average = mean(value)), by = key(dt)]
+
 ```
