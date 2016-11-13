@@ -12,6 +12,7 @@ There will be two files, one is used to store all methods used in this calculati
 **Method**
 LoadTheData()
 
+```r
 LoadTheData <- function(){
   url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
   datasetFile <- "DatasetFile.zip";
@@ -23,5 +24,5 @@ LoadTheData <- function(){
     download.file(url, file.path(filePath, datasetFile))
   }
 }
-
+```
 
