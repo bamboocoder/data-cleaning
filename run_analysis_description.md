@@ -40,7 +40,8 @@ LoadUnzipAndData <- function(){
   list.files(pathIn, recursive = TRUE)
 }
 ```
-** output **
+**output**
+
  [1] "activity_labels.txt"                         
  [2] "features.txt"                                
  [3] "features_info.txt"                           
